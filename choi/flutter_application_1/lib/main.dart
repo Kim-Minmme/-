@@ -52,9 +52,13 @@ class _PostPageState extends State<PostPage> {
     }
 
     // Server에 GET 요청
-    String serverUrl = "http://127.0.0.1:8080";
-    final res = await http.get(Uri.parse(serverUrl+"/"));
-    print(res.body);
+    String serverUrl = "http://minme.kro.kr:20000";
+    // final res = await http.get(Uri.parse(serverUrl+"/"));
+    // print(res.body);
+    await http.post(Uri.parse(serverUrl+"/군대"), body: <String, String>{
+      "title": _save!.title,
+      "content": _save!.content
+    });
   }
 
   @override

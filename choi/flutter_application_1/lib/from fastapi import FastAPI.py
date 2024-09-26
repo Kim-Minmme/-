@@ -1,5 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    title: str
+    content: str
 
 app = FastAPI()
 
@@ -11,9 +16,11 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/")
-def index():
-    return "Hello, world!"
+@app.post("/")
+def a(Item: Item):
+    with open("군대.txt", "w") as txt:
+        txt.write(Item.title)
+        txt.write(Item.content)
 
 if __name__ == "__main__":
     import uvicorn
