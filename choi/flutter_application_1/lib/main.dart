@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 // User 클래스 정의
 class User {
@@ -55,10 +56,12 @@ class _PostPageState extends State<PostPage> {
     String serverUrl = "http://minme.kro.kr:20000";
     // final res = await http.get(Uri.parse(serverUrl+"/"));
     // print(res.body);
-    await http.post(Uri.parse(serverUrl+"/군대"), body: <String, String>{
+    await http.post(Uri.parse(serverUrl+"/asd"), headers: {
+      'Content-Type': 'application/json',
+    }, body: jsonEncode({
       "title": _save!.title,
       "content": _save!.content
-    });
+    }));
   }
 
   @override
