@@ -16,12 +16,13 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.post("/")
-def a(Item: Item):
+@app.post("/asd")
+def aASFAS(item: Item):
     with open("군대.txt", "w") as txt:
-        txt.write(Item.title)
-        txt.write(Item.content)
+        txt.write("title: " + item.title)
+        txt.write("\n")
+        txt.write("content: " + item.content)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=20000)
